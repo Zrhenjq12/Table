@@ -47,3 +47,7 @@ th:hover {
 .header-list li a:hover {
     color: orange;
 }
+
+strong {
+    display: inline-block;
+}

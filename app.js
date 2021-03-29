@@ -10,6 +10,7 @@ let massObj = [
     { name: 'Гриша', age: 29, pfession: 'bacend', workExperience: '2 года', married: 'Да' },
 ]
 
+//Формирование ячейки
 function creatuTd(obj) {
     let str = ' ';
     for (let n in obj) {
@@ -18,6 +19,7 @@ function creatuTd(obj) {
     return str;
 }
 
+//Формирование строки
 function creatuTr(Mass) {
     let str = '';
     Mass.map((elem) => {
@@ -26,18 +28,30 @@ function creatuTr(Mass) {
 
     return str;
 }
-
-
+//Формирование таблицы
 table.insertAdjacentHTML('beforeend',
     `${creatuTr(massObj)}`
 
 )
+
+
+
+
+
+
+
+let arrow = Array.from(document.querySelectorAll('strong'))
+console.log(arrow);
+// arrow.style.transform = "rotate(90deg)"
+//Сортировка
 let f = false
 let element = null;
 table.addEventListener('click', event => {
     event.preventDefault()
     if (event.target.dataset.tab) {
         if (f) {
+            arrow[event.target.dataset.tab - 1].style.transform = "rotate(270deg)"
+
             let sortedRows = Array.from(table.rows)
                 .slice(1)
                 .sort((rowA, rowB) => rowA.cells[element].innerHTML < rowB.cells[element].innerHTML ? 1 : -1);
@@ -45,6 +59,7 @@ table.addEventListener('click', event => {
             f = false
         } else {
             element = event.target.dataset.tab - 1
+            arrow[event.target.dataset.tab - 1].style.transform = "rotate(90deg)"
             let sortedRows = Array.from(table.rows)
                 .slice(1)
                 .sort((rowA, rowB) => rowA.cells[element].innerHTML > rowB.cells[element].innerHTML ? 1 : -1);
