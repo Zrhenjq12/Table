@@ -32,18 +32,27 @@ table.insertAdjacentHTML('beforeend',
     `${creatuTr(massObj)}`
 
 )
+let f = false
 let element = null;
 table.addEventListener('click', event => {
     event.preventDefault()
     if (event.target.dataset.tab) {
-        if (element == event.target.dataset.tab - 1) {
-            return
+        if (f) {
+            let sortedRows = Array.from(table.rows)
+                .slice(1)
+                .sort((rowA, rowB) => rowA.cells[element].innerHTML < rowB.cells[element].innerHTML ? 1 : -1);
+            table.tBodies[0].append(...sortedRows);
+            f = false
+        } else {
+            element = event.target.dataset.tab - 1
+            let sortedRows = Array.from(table.rows)
+                .slice(1)
+                .sort((rowA, rowB) => rowA.cells[element].innerHTML > rowB.cells[element].innerHTML ? 1 : -1);
+            table.tBodies[0].append(...sortedRows);
+            f = true
         }
-        element = event.target.dataset.tab - 1
-        let sortedRows = Array.from(table.rows)
-            .slice(1)
-            .sort((rowA, rowB) => rowA.cells[element].innerHTML > rowB.cells[element].innerHTML ? 1 : -1);
-        table.tBodies[0].append(...sortedRows);
+
+
     }
 
 })
