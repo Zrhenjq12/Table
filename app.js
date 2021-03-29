@@ -35,14 +35,8 @@ table.insertAdjacentHTML('beforeend',
 )
 
 
-
-
-
-
-
 let arrow = Array.from(document.querySelectorAll('strong'))
 console.log(arrow);
-// arrow.style.transform = "rotate(90deg)"
 //Сортировка
 let f = false
 let element = null;
